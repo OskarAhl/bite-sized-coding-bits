@@ -1,108 +1,124 @@
 ---
-title: New Beginnings
-date: "2015-05-28T22:40:32.169Z"
-description: This is a custom description for SEO and Open Graph purposes, rather than the default generated excerpt. Simply add a description field to the frontmatter.
+title: Laziness - Streams and thunks in JavaScript
+date: "2020-04-05"
+description: Interactive streams and thunks with excercises.
 ---
 
-Far far away, behind the word mountains, far from the countries Vokalia and
-Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
-right at the coast of the Semantics, a large language ocean. A small river named
-Duden flows by their place and supplies it with the necessary regelialia.
+Thunks are not scary, it's one of the fancy words programmers like to throw around but once you get to the essence of it it's really not that complicated.
 
-## On deer horse aboard tritely yikes and much
+Read the text, do the excersises, and you'll have a basic understanding of thunks in no time. Then you'll be able will to understand your co-workers (and streams and libraries such as redux-thunk).
 
-The Big Oxmox advised her not to do so, because there were thousands of bad
-Commas, wild Question Marks and devious Semikoli, but the Little Blind Text
-didn’t listen. She packed her seven versalia, put her initial into the belt and
-made herself on the way.
+### "Thunk the expression"
 
-- This however showed weasel
-- Well uncritical so misled
-  - this is very interesting
-- Goodness much until that fluid owl
+When you speak with another programmer they might say "Thunk the expression". What does this mean? Thunks are a way to avoid unneccessary computations. An unnecessary computation is e.g. a function that is called when it's not needed, with thunks you can delay the evaluation until the it's actually needed. This is known as **lazy evaluation**.
 
-When she reached the first hills of the **Italic Mountains**, she had a last
-view back on the skyline of her hometown _Bookmarksgrove_, the headline of
-[Alphabet Village](http://google.com) and the subline of her own road, the Line
-Lane. Pityful a rhetoric question ran over her cheek, then she continued her
-way. On her way she met a copy.
+So a thunk is an expression that has not been evaluated yet. A thunk is represented by a function that has been declared. When the function is called the function is evaluated, so evaluation of functions only happen when the function itself is called.
 
-### Overlaid the jeepers uselessly much excluding
+**What's an expression?**
 
-But nothing the copy said could convince her and so it didn’t take long until a
-few insidious Copy Writers ambushed her, made her drunk with
-[Longe and Parole](http://google.com) and dragged her into their agency, where
-they abused her for their projects again and again. And if she hasn’t been
-rewritten, then they are still using her.
+Expression is a statement of logic. E.g: a function declaration:
 
-> Far far away, behind the word mountains, far from the countries Vokalia and
-> Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
-> right at the coast of the Semantics, a large language ocean.
+```javascript
+const add = (a, b) => a + b
+```
 
-It is a paradisematic country, in which roasted parts of sentences fly into your
-mouth. Even the all-powerful Pointing has no control about the blind texts it is
-an almost unorthographic life One day however a small line of blind text by the
-name of Lorem Ipsum decided to leave for the far World of Grammar.
+<br />
 
-### According a funnily until pre-set or arrogant well cheerful
+**What's evaluation?**
 
-The Big Oxmox advised her not to do so, because there were thousands of bad
-Commas, wild Question Marks and devious Semikoli, but the Little Blind Text
-didn’t listen. She packed her seven versalia, put her initial into the belt and
-made herself on the way.
+Evaluation is when a piece of code is executed. The add function above has been declared -- but it has not been executed yet. To evaluate or to execute the function, we call it:
 
-1.  So baboon this
-2.  Mounted militant weasel gregariously admonishingly straightly hey
-3.  Dear foresaw hungry and much some overhung
-4.  Rash opossum less because less some amid besides yikes jeepers frenetic
-    impassive fruitlessly shut
+```javascript
+add(39, 3)
+```
 
-When she reached the first hills of the Italic Mountains, she had a last view
-back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet
-Village and the subline of her own road, the Line Lane. Pityful a rhetoric
-question ran over her cheek, then she continued her way. On her way she met a
-copy.
+### Streams:
 
-> The copy warned the Little Blind Text, that where it came from it would have
-> been rewritten a thousand times and everything that was left from its origin
-> would be the word "and" and the Little Blind Text should turn around and
-> return to its own, safe country.
+With a stream you can generate an infinite sequence of values. Since the stream can generate an infinite amount of values you cannot call a function and "create" all the infinite values at once.
 
-But nothing the copy said could convince her and so it didn’t take long until a
-few insidious Copy Writers ambushed her, made her drunk with Longe and Parole
-and dragged her into their agency, where they abused her for their projects
-again and again. And if she hasn’t been rewritten, then they are still using
-her. Far far away, behind the word mountains, far from the countries Vokalia and
-Consonantia, there live the blind texts.
+By using thunks you can create an infinite sequence of values -- since a thunk is not evaluated immediately.
 
-#### Silent delightfully including because before one up barring chameleon
+A basic stream can be represented by a function that returns a pair: a value and a thunk that will generate the next value:
 
-Separated they live in Bookmarksgrove right at the coast of the Semantics, a
-large language ocean. A small river named Duden flows by their place and
-supplies it with the necessary regelialia. It is a paradisematic country, in
-which roasted parts of sentences fly into your mouth.
+```
+[value, thunkToGenerateNextValue]
+```
 
-Even the all-powerful Pointing has no control about the blind texts it is an
-almost unorthographic life One day however a small line of blind text by the
-name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox
-advised her not to do so, because there were thousands of bad Commas, wild
-Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.
+<br />
 
-##### Wherever far wow thus a squirrel raccoon jeez jaguar this from along
+**What's a pair?**
 
-She packed her seven versalia, put her initial into the belt and made herself on
-the way. When she reached the first hills of the Italic Mountains, she had a
-last view back on the skyline of her hometown Bookmarksgrove, the headline of
-Alphabet Village and the subline of her own road, the Line Lane. Pityful a
-rhetoric question ran over her cheek, then she continued her way. On her way she
-met a copy.
+A pair is a datastructure that holds two values. JavaScript doesn't have an innate pair datastructure so we can simply use an array with two values to make our own pair datastructure.
 
-###### Slapped cozy a that lightheartedly and far
+```javascript
+const pair = [value1, value2]
+// we can access pair values with [0] and [1]
+```
 
-The copy warned the Little Blind Text, that where it came from it would have
-been rewritten a thousand times and everything that was left from its origin
-would be the word "and" and the Little Blind Text should turn around and return
-to its own, safe country. But nothing the copy said could convince her and so it
-didn’t take long until a few insidious Copy Writers ambushed her, made her drunk
-with Longe and Parole and dragged her into their agency, where they abused her
-for their projects again and again.
+<br />
+
+Implementation of a stream that generates an infinite sequence of ones:
+
+```javascript
+const streamOfOnes = () => [1, streamOfOnes]
+
+// usage:
+streamOfOnes()[0] // 1
+streamOfOnes()[1]()[0] // 1
+streamOfOnes()[1]()[1]()[0] // 1
+//...amazing, we can generate infinite 1's on demand / lazily!
+```
+
+<br/>
+
+Stream of ones returns the value 1 and a thunk to generate the next value (and next thunk that can generate the next value...).
+
+To generate the next value of the stream we call the thunk (the second element in the pairs array) returned by our streamOfOnes function.
+
+The thunk here is the streamOfOnes function declaration, that we recursively return as a thunk.
+
+Here is another one: a stream that counts from 1:
+
+```javascript
+const countStream = () => {
+  // takes the current count and increments it by one
+  const counterHelper = count => [count, () => counterHelper(count + 1)]
+
+  // start counting from 1
+  return counterHelper(1)
+}
+
+console.log(countStream()[0]) // 1
+console.log(countStream()[1]()[0]) // 2
+console.log(countStream()[1]()[1]()[0]) // 3
+```
+
+<br />
+
+Your turn! Complete the function below and once it passes all tests move on to the next:
+
+<iframe frameborder="0" width="100%" height="500px" src="https://repl.it/@oskarahlroth/Thunks?lite=true"></iframe>
+
+### Let's get functional
+
+Good job so far! 🎉
+
+This challenge is more challenging 😉. Currently to get values from a stream we are accessing the thunk in the array and calling it repeteadly, which is hard to read and hard to follow.
+
+e.g:
+
+```javascript
+// this is hard to follow:
+countStream()[1]()[1]()[0]
+```
+
+<br />
+
+What if there was an easier way?
+
+You're up again captain!
+
+<iframe frameborder="0" width="100%" height="500px" src="https://repl.it/@oskarahlroth/Take?lite=true"></iframe>
+
+Awesome! 🚀 Hope you had fun, want more interactive coding challenges?
+Subscribe to my newsletter below:

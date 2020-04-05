@@ -14,9 +14,9 @@ import { rhythm } from "../utils/typography"
 const Bio = () => {
   const data = useStaticQuery(graphql`
     query BioQuery {
-      avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+      avatar: file(absolutePath: { regex: "/profile.jpg/" }) {
         childImageSharp {
-          fixed(width: 50, height: 50) {
+          fixed(width: 100, height: 100, cropFocus: CENTER) {
             ...GatsbyImageSharpFixed
           }
         }
@@ -41,6 +41,7 @@ const Bio = () => {
       style={{
         display: `flex`,
         marginBottom: rhythm(2.5),
+        alignItems: "center",
       }}
     >
       <Image
@@ -49,20 +50,14 @@ const Bio = () => {
         style={{
           marginRight: rhythm(1 / 2),
           marginBottom: 0,
-          minWidth: 50,
+          minWidth: 100,
           borderRadius: `100%`,
         }}
         imgStyle={{
           borderRadius: `50%`,
         }}
       />
-      <p>
-        Written by <strong>{author.name}</strong> {author.summary}
-        {` `}
-        <a href={`https://twitter.com/${social.twitter}`}>
-          You should follow him on Twitter
-        </a>
-      </p>
+      <p style={{ marginBottom: 0 }}>{author.summary}</p>
     </div>
   )
 }

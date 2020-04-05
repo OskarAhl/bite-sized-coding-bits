@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `Code Snippets`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `Oskar`,
+      summary: `Hi 👋I'm Oskar Ahlroth and I'm a self-taught software developer based in Kuala Lumpur, Malaysia where I work for a fintech company.`,
     },
     description: `A starter blog demonstrating what Gatsby can do.`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
@@ -12,6 +12,7 @@ module.exports = {
     },
   },
   plugins: [
+    "gatsby-plugin-emotion",
     {
       resolve: `gatsby-source-filesystem`,
       options: {
