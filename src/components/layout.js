@@ -2,7 +2,6 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "@emotion/styled"
 import { Global, css } from "@emotion/core"
-
 import { rhythm, scale } from "../utils/typography"
 
 const StyledNav = styled.nav`
@@ -54,23 +53,28 @@ const Layout = ({ location, title, children }) => {
 
   if (location.pathname === rootPath) {
     header = (
-      <h1
-        style={{
-          ...scale(1),
-          marginBottom: rhythm(1.5),
-          marginTop: 0,
-        }}
-      >
-        <Link
+      <div style={{ marginBottom: rhythm(1.5) }}>
+        <h1
           style={{
-            boxShadow: `none`,
-            color: `inherit`,
+            ...scale(1),
+            marginBottom: rhythm(1),
+            marginTop: 0,
           }}
-          to={`/`}
         >
-          {title}
-        </Link>
-      </h1>
+          <Link
+            style={{
+              boxShadow: `none`,
+              color: `inherit`,
+            }}
+            to={`/`}
+          >
+            {title}
+          </Link>
+        </h1>
+        <h3 style={{ marginBottom: 0, marginTop: 0 }}>
+          Learn bite-sized programming concepts fast.
+        </h3>
+      </div>
     )
   } else {
     header = (
@@ -126,17 +130,12 @@ const Layout = ({ location, title, children }) => {
           style={{
             marginLeft: `auto`,
             marginRight: `auto`,
-            maxWidth: rhythm(24),
+            maxWidth: rhythm(28),
             padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
           }}
         >
           <header>{header}</header>
           <main>{children}</main>
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
-          </footer>
         </div>
       </div>
     </div>

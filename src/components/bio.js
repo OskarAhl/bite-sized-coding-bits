@@ -1,15 +1,32 @@
-/**
- * Bio component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
+import styled from "@emotion/styled"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
-
+import LinkedInIcon from "../svgs/linkedin.svg"
+import TwitterIcon from "../svgs/twitter.svg"
+import InstagramIcon from "../svgs/instagram.svg"
+import QuoraIcon from "../svgs/quora.svg"
 import { rhythm } from "../utils/typography"
+
+const SocialIcons = styled.div`
+  display: flex;
+  transition: all 0.3s ease;
+  padding-top: 8px;
+
+  a {
+    box-shadow: none;
+    height: 25px;
+  }
+  svg {
+    height: 25px;
+    padding-right: 10px;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+  }
+`
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -57,7 +74,39 @@ const Bio = () => {
           borderRadius: `50%`,
         }}
       />
-      <p style={{ marginBottom: 0 }}>{author.summary}</p>
+      <div>
+        <p style={{ marginBottom: 0 }}>{author.summary}</p>
+        <SocialIcons>
+          <a
+            href="https://twitter.com/CareerSifu"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <TwitterIcon />
+          </a>
+          <a
+            href="https://www.quora.com/profile/Oskar-Ahlroth"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <QuoraIcon style={{ fill: "#B92B27" }} />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/careersifu/about/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <LinkedInIcon />
+          </a>
+          <a
+            href="https://www.instagram.com/careersifu/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <InstagramIcon />
+          </a>
+        </SocialIcons>
+      </div>
     </div>
   )
 }

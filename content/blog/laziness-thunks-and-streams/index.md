@@ -1,18 +1,24 @@
 ---
 title: Laziness - Streams and thunks in JavaScript
 date: "2020-04-05"
-description: Interactive streams and thunks with excercises.
+description: Learn by doing. Interactive excercises to help you grasp streams and thunks.
 ---
 
-Thunks are not scary, it's one of the fancy words programmers like to throw around but once you get to the essence of it it's really not that complicated.
+Thunks and streams are not scary, they are just a few of the fancy words programmers like to throw around. Once you get to the essence of it it's really not that complicated.
 
-Read the text, do the excersises, and you'll have a basic understanding of thunks in no time. Then you'll be able will to understand your co-workers (and streams and libraries such as redux-thunk).
+Read the text, do the excersises, and you'll have a basic understanding of thunks in no time. It's a nice tool to have in your programming toolbox plus you'll be able to understand your co-workers (and libraries such as redux-thunk).
+
+Personally I struggle to understand programming concepts by just reading a blog post or watching a video, I need to implement it by myself to come to true understanding.
+
+It's as Confucius says:
+
+> I hear and I forget. I see and I remember. I do and I understand.
 
 ### "Thunk the expression"
 
-When you speak with another programmer they might say "Thunk the expression". What does this mean? Thunks are a way to avoid unneccessary computations. An unnecessary computation is e.g. a function that is called when it's not needed, with thunks you can delay the evaluation until the it's actually needed. This is known as **lazy evaluation**.
+When you speak with another programmer they might say "Thunk the expression". What does this mean? Thunks are a way to avoid unneccessary computations. An unnecessary computation is e.g. a function that is called when it's not needed, with thunks you can delay the evaluation until it's actually needed. This is known as **lazy evaluation**.
 
-So a thunk is an expression that has not been evaluated yet. A thunk is represented by a function that has been declared. When the function is called the function is evaluated, so evaluation of functions only happen when the function itself is called.
+So a thunk is an expression that has not been evaluated yet -- a thunk is a function that has been declared. When the function is called the function is evaluated, so evaluation of functions only happen when the function itself is called.
 
 **What's an expression?**
 
@@ -34,13 +40,16 @@ add(39, 3)
 
 ### Streams:
 
-With a stream you can generate an infinite sequence of values. Since the stream can generate an infinite amount of values you cannot call a function and "create" all the infinite values at once.
+With a stream you can generate an infinite sequence of values. Because streams can generate an infinite amount of values you cannot just call a function and "create" all the infinite values at once, that would cause our program to run out of memory.
 
-By using thunks you can create an infinite sequence of values -- since a thunk is not evaluated immediately.
+So how do you represent the infinite?
+
+This is where thunks come into play, by using thunks you can represent an infinite sequence of values -- since a thunk is not evaluated immediately.
 
 A basic stream can be represented by a function that returns a pair: a value and a thunk that will generate the next value:
 
 ```
+// thunkToGenerateNextValue is a function declaration
 [value, thunkToGenerateNextValue]
 ```
 
@@ -57,7 +66,7 @@ const pair = [value1, value2]
 
 <br />
 
-Implementation of a stream that generates an infinite sequence of ones:
+Here is a stream that generates an infinite sequence of ones:
 
 ```javascript
 const streamOfOnes = () => [1, streamOfOnes]
@@ -71,11 +80,10 @@ streamOfOnes()[1]()[1]()[0] // 1
 
 <br/>
 
-Stream of ones returns the value 1 and a thunk to generate the next value (and next thunk that can generate the next value...).
+Stream of ones returns the value 1 and a thunk to generate the next value (and the next thunk that can generate the next value... and so forth until infinity).
 
-To generate the next value of the stream we call the thunk (the second element in the pairs array) returned by our streamOfOnes function.
-
-The thunk here is the streamOfOnes function declaration, that we recursively return as a thunk.
+The thunk here is the streamOfOnes function declaration, that we recursively return as a thunk
+and to get the next value of our infinite stream we call this thunk.
 
 Here is another one: a stream that counts from 1:
 
@@ -114,7 +122,13 @@ countStream()[1]()[1]()[0]
 
 <br />
 
-What if there was an easier way?
+What if there was an easier way? and we could just take the values we need.
+
+```javascript
+take(countStream, 5) // [1, 2, 3, 4, 5]
+```
+
+<br/>
 
 You're up again captain!
 

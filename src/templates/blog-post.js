@@ -1,14 +1,16 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-
+import NewsLetter from "../components/newsLetter"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
+import { ShareIcons } from "../components/share-social-media-icons"
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
+  const siteUrl = data.site.siteMetadata.siteUrl
   const { previous, next } = pageContext
 
   return (
@@ -38,12 +40,32 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           </p>
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
+        <ShareIcons
+          socialConfig={{
+            config: {
+              url: `${siteUrl}${post.fields.slug}`,
+              title: post.frontmatter.title,
+            },
+          }}
+        />
         <hr
           style={{
             marginBottom: rhythm(1),
           }}
         />
         <footer>
+          <NewsLetter />
+          <div
+            style={{
+              marginBottom: rhythm(1),
+              height: "1px",
+            }}
+          />
+          <hr
+            style={{
+              marginBottom: rhythm(1),
+            }}
+          />
           <Bio />
         </footer>
       </article>
@@ -85,6 +107,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        siteUrl
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
@@ -95,6 +118,9 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+      }
+      fields {
+        slug
       }
     }
   }
