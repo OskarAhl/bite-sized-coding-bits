@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Newsletter from "../components/newsLetter"
 import { rhythm } from "../utils/typography"
 
 const BlogIndex = ({ data, location }) => {
@@ -39,6 +40,14 @@ const BlogIndex = ({ data, location }) => {
           </article>
         )
       })}
+      <hr style={{ marginTop: "4.375rem" }} />
+      <Newsletter />
+      <hr
+        style={{
+          marginBottom: rhythm(1),
+          marginTop: "3.5rem",
+        }}
+      />
     </Layout>
   )
 }

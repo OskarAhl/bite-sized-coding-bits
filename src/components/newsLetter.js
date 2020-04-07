@@ -9,6 +9,7 @@ const HelperText = styled.p`
   color: rgb(113, 128, 150);
   line-height: normal;
   font-size: 0.875rem;
+  max-width: 428px;
 `
 const ErrorText = styled.p`
   color: #e53e3e;
@@ -42,7 +43,7 @@ const EmailListForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Get weekly interactive coding challenges</h2>
+      <h3>Get weekly interactive coding challenges</h3>
       {status === "success" ? (
         <div>Thanks for signing up! 🎉</div>
       ) : (
@@ -61,7 +62,8 @@ const EmailListForm = () => {
             onChange={handleEmailChange}
           />
           <HelperText id="email-helper-text">
-            We'll never share your email.
+            Programming and computer science concepts. Sent 1× a week. You can
+            always unsubscribe with just one click.
           </HelperText>
           <Button type="submit" loading={status === "loading"}>
             Subscribe

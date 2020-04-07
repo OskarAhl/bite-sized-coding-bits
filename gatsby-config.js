@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Weekly code snippets`,
+    title: `Bite coding bits`,
     author: {
       name: `Oskar`,
       summary: `Hi 👋I'm Oskar Ahlroth and I'm a self-taught software developer based in Kuala Lumpur, Malaysia where I work for a fintech company.`,
@@ -61,8 +61,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Weekly code snippets`,
-        short_name: `Weekly code snippets`,
+        name: `Bite coding bits`,
+        short_name: `Bite code snippets`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#ff0083`,
