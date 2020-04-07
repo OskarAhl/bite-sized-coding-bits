@@ -21,6 +21,8 @@ const SEO = ({ description, lang, meta, title }) => {
             social {
               twitter
             }
+            image
+            siteUrl
           }
         }
       }
@@ -68,6 +70,10 @@ const SEO = ({ description, lang, meta, title }) => {
         {
           name: `twitter:description`,
           content: metaDescription,
+        },
+        {
+          property: "og:image",
+          content: `${site.siteMetadata.siteUrl}${site.siteMetadata.image}`,
         },
       ].concat(meta)}
     />

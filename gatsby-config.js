@@ -6,10 +6,11 @@ module.exports = {
       summary: `Hi 👋I'm Oskar Ahlroth and I'm a self-taught software developer based in Kuala Lumpur, Malaysia where I work for a fintech company.`,
     },
     description: `Learn programming concepts from interactive blog posts`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `https://www.bitecodingbits.com/`,
     social: {
       twitter: "AhlrothOskar",
     },
+    image: "/coding-bits.png",
   },
   plugins: [
     "gatsby-plugin-emotion",

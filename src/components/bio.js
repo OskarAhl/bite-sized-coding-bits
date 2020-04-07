@@ -78,7 +78,7 @@ const Bio = () => {
         <p style={{ marginBottom: 0 }}>{author.summary}</p>
         <SocialIcons>
           <a
-            href="https://twitter.com/CareerSifu"
+            href="https://twitter.com/AhlrothOskar"
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -92,14 +92,14 @@ const Bio = () => {
             <QuoraIcon style={{ fill: "#B92B27" }} />
           </a>
           <a
-            href="https://www.linkedin.com/company/careersifu/about/"
+            href="https://www.linkedin.com/in/oskar-ahlroth-6581b3b8/"
             rel="noopener noreferrer"
             target="_blank"
           >
             <LinkedInIcon />
           </a>
           <a
-            href="https://www.instagram.com/careersifu/"
+            href="https://www.instagram.com/oskarahlroth/"
             rel="noopener noreferrer"
             target="_blank"
           >
