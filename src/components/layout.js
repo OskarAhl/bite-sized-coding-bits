@@ -1,7 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
 import styled from "@emotion/styled"
-import { Global, css } from "@emotion/core"
 import { rhythm, scale } from "../utils/typography"
 
 const StyledNav = styled.nav`
@@ -26,23 +25,6 @@ const Circle = styled.div`
     opacity: 0.8;
     cursor: pointer;
   }
-`
-
-const Dark = styled(Circle)`
-  background-color: black;
-`
-
-const Blue = styled(Circle)`
-  background-color: blue;
-`
-
-const Light = styled(Circle)`
-  background-color: white;
-  border: 1px solid grey;
-`
-
-const Purple = styled(Circle)`
-  background-color: purple;
 `
 
 const Layout = ({ location, title, children }) => {
@@ -98,34 +80,7 @@ const Layout = ({ location, title, children }) => {
   }
   return (
     <div>
-      <Global
-        styles={css`
-          :root {
-            --main-bg-color: pink;
-          }
-        `}
-      />
       <div>
-        {/* <StyledNav>
-          <Dark
-            onClick={() =>
-              document.documentElement.style.setProperty(
-                "--main-bg-color",
-                "#000"
-              )
-            }
-          />
-          <Light
-            onClick={() =>
-              document.documentElement.style.setProperty(
-                "--main-bg-color",
-                "#fff"
-              )
-            }
-          />
-          <Purple />
-          <Blue />
-        </StyledNav> */}
         <div
           style={{
             marginLeft: `auto`,

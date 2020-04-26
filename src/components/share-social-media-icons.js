@@ -16,7 +16,7 @@ import TwitterIcon from "../svgs/twitter.svg"
 const IconWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding: 1rem 0;
+  padding-bottom: 1rem;
 
   svg {
     padding: 0 10px;
@@ -30,18 +30,21 @@ const IconWrapper = styled.div`
 `
 
 export const ShareIcons = ({ socialConfig }) => (
-  <IconWrapper>
-    <FacebookShareButton url={socialConfig.config.url}>
-      <FacebookIcon />
-    </FacebookShareButton>
-    <LinkedinShareButton url={socialConfig.config.url}>
-      <LinkedInIcon />
-    </LinkedinShareButton>
-    <WhatsappShareButton url={socialConfig.config.url}>
-      <WhatsappIcon />
-    </WhatsappShareButton>
-    <TwitterShareButton url={socialConfig.config.url}>
-      <TwitterIcon />
-    </TwitterShareButton>
-  </IconWrapper>
+  <div>
+    <p style={{ textAlign: "center" }}>Share this with your friends:</p>
+    <IconWrapper>
+      <FacebookShareButton url={socialConfig.config.url}>
+        <FacebookIcon />
+      </FacebookShareButton>
+      <LinkedinShareButton url={socialConfig.config.url}>
+        <LinkedInIcon />
+      </LinkedinShareButton>
+      <WhatsappShareButton url={socialConfig.config.url}>
+        <WhatsappIcon />
+      </WhatsappShareButton>
+      <TwitterShareButton url={socialConfig.config.url}>
+        <TwitterIcon />
+      </TwitterShareButton>
+    </IconWrapper>
+  </div>
 )
